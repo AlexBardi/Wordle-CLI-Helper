@@ -10,11 +10,11 @@ def main():
     print("a0,b1,c2,d3,e4")
     yellowIn = input(">") 
     yellowSet = set()
-    yellowPos = {}
+    yellowPairs = []
     if yellowIn != '':
         for point in yellowIn.split(','):
             yellowSet.add(point[0])
-            yellowPos[point[0]] = int(point[1])
+            yellowPairs.append(point)
 
     print("What are the greens? Write the letter and position in this format (0 indexed):")
     print("a0,b1,c2,d3,e4")
@@ -49,7 +49,7 @@ def main():
                     if any(letter in blackSet for letter in word) == False:
                         if all(letter in word for letter in yellowSet) == True:
                             if all(letter in word for letter in greenSet) == True:
-                                if not yellowPos or any(letter == word[yellowPos[letter]] for letter in yellowPos) == False:
+                                if not yellowPairs or any(pair[0] == word[int(pair[1])] for pair in yellowPairs) == False:
                                     if not greenPos or all(letter == word[greenPos[letter]] for letter in greenPos) == True:
                                         print(word)
 
